@@ -15,7 +15,6 @@ namespace FILLITT
         public string DateOfDeath { get; set; }
         public int Mother { get; set; }
         public int Father { get; set; }
-        //public string myVar;
 
         public string DisplayIt
         {

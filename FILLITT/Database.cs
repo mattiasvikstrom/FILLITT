@@ -20,7 +20,8 @@ namespace FILLITT
         /// </summary>
         public void CreateDatabase()
         {
-            SqlConnection connect = new SqlConnection(CnnValue("FamilyTree"));
+            //SqlConnection connect = new SqlConnection(CnnValue("FamilyTree")); fungerar såklart inte när man ska kolla om databasen lr table finns ;)
+            SqlConnection connect = new SqlConnection(ConnectionString);
             var sql = @"IF EXISTS 
                        (
                         SELECT name FROM master.dbo.sysdatabases " +
