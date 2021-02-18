@@ -50,7 +50,7 @@ namespace FILLITT
             this.lbYearOfDeath = new System.Windows.Forms.ListBox();
             this.lbMother = new System.Windows.Forms.ListBox();
             this.lbFather = new System.Windows.Forms.ListBox();
-            this.listBox7 = new System.Windows.Forms.ListBox();
+            this.lbId = new System.Windows.Forms.ListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -71,6 +71,15 @@ namespace FILLITT
             this.lbGrandparents = new System.Windows.Forms.ListBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lbChildren = new System.Windows.Forms.ListBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbFirstName
@@ -83,21 +92,20 @@ namespace FILLITT
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(153, 363);
+            this.search.Location = new System.Drawing.Point(153, 348);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(75, 23);
             this.search.TabIndex = 1;
             this.search.Text = "Search";
             this.search.UseVisualStyleBackColor = true;
-            this.search.Click += new System.EventHandler(this.button1_Click);
+            this.search.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 365);
+            this.textBox1.Location = new System.Drawing.Point(12, 350);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(135, 20);
             this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // tbFirstNameAdd
             // 
@@ -114,7 +122,7 @@ namespace FILLITT
             this.enterPerson.TabIndex = 5;
             this.enterPerson.Text = "Enter person to DB";
             this.enterPerson.UseVisualStyleBackColor = true;
-            this.enterPerson.Click += new System.EventHandler(this.button2_Click);
+            this.enterPerson.Click += new System.EventHandler(this.EnterPersonToDatabase_Click);
             // 
             // tbLastNameAdd
             // 
@@ -245,18 +253,18 @@ namespace FILLITT
             this.lbFather.Size = new System.Drawing.Size(85, 173);
             this.lbFather.TabIndex = 21;
             // 
-            // listBox7
+            // lbId
             // 
-            this.listBox7.FormattingEnabled = true;
-            this.listBox7.Location = new System.Drawing.Point(12, 392);
-            this.listBox7.Name = "listBox7";
-            this.listBox7.Size = new System.Drawing.Size(26, 173);
-            this.listBox7.TabIndex = 22;
+            this.lbId.FormattingEnabled = true;
+            this.lbId.Location = new System.Drawing.Point(12, 392);
+            this.lbId.Name = "lbId";
+            this.lbId.Size = new System.Drawing.Size(26, 173);
+            this.lbId.TabIndex = 22;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(668, 109);
+            this.comboBox1.Location = new System.Drawing.Point(533, 117);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 23;
@@ -265,7 +273,7 @@ namespace FILLITT
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(598, 277);
+            this.label7.Location = new System.Drawing.Point(463, 285);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 13);
             this.label7.TabIndex = 36;
@@ -274,7 +282,7 @@ namespace FILLITT
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(598, 251);
+            this.label8.Location = new System.Drawing.Point(463, 259);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 35;
@@ -283,7 +291,7 @@ namespace FILLITT
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(598, 225);
+            this.label9.Location = new System.Drawing.Point(463, 233);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 34;
@@ -292,7 +300,7 @@ namespace FILLITT
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(598, 199);
+            this.label10.Location = new System.Drawing.Point(463, 207);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 13);
             this.label10.TabIndex = 33;
@@ -301,7 +309,7 @@ namespace FILLITT
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(598, 173);
+            this.label11.Location = new System.Drawing.Point(463, 181);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 13);
             this.label11.TabIndex = 32;
@@ -310,7 +318,7 @@ namespace FILLITT
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(598, 144);
+            this.label12.Location = new System.Drawing.Point(463, 152);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(55, 13);
             this.label12.TabIndex = 31;
@@ -318,42 +326,42 @@ namespace FILLITT
             // 
             // tbFatherUpdate
             // 
-            this.tbFatherUpdate.Location = new System.Drawing.Point(672, 274);
+            this.tbFatherUpdate.Location = new System.Drawing.Point(537, 282);
             this.tbFatherUpdate.Name = "tbFatherUpdate";
             this.tbFatherUpdate.Size = new System.Drawing.Size(114, 20);
             this.tbFatherUpdate.TabIndex = 30;
             // 
             // tbMotherUpdate
             // 
-            this.tbMotherUpdate.Location = new System.Drawing.Point(672, 248);
+            this.tbMotherUpdate.Location = new System.Drawing.Point(537, 256);
             this.tbMotherUpdate.Name = "tbMotherUpdate";
             this.tbMotherUpdate.Size = new System.Drawing.Size(114, 20);
             this.tbMotherUpdate.TabIndex = 29;
             // 
             // tbDateOfDeathUpdate
             // 
-            this.tbDateOfDeathUpdate.Location = new System.Drawing.Point(672, 222);
+            this.tbDateOfDeathUpdate.Location = new System.Drawing.Point(537, 230);
             this.tbDateOfDeathUpdate.Name = "tbDateOfDeathUpdate";
             this.tbDateOfDeathUpdate.Size = new System.Drawing.Size(114, 20);
             this.tbDateOfDeathUpdate.TabIndex = 28;
             // 
             // tbBirthdateUpdate
             // 
-            this.tbBirthdateUpdate.Location = new System.Drawing.Point(672, 196);
+            this.tbBirthdateUpdate.Location = new System.Drawing.Point(537, 204);
             this.tbBirthdateUpdate.Name = "tbBirthdateUpdate";
             this.tbBirthdateUpdate.Size = new System.Drawing.Size(114, 20);
             this.tbBirthdateUpdate.TabIndex = 27;
             // 
             // tbLastNameUpdate
             // 
-            this.tbLastNameUpdate.Location = new System.Drawing.Point(672, 170);
+            this.tbLastNameUpdate.Location = new System.Drawing.Point(537, 178);
             this.tbLastNameUpdate.Name = "tbLastNameUpdate";
             this.tbLastNameUpdate.Size = new System.Drawing.Size(114, 20);
             this.tbLastNameUpdate.TabIndex = 26;
             // 
             // deletePerson
             // 
-            this.deletePerson.Location = new System.Drawing.Point(672, 328);
+            this.deletePerson.Location = new System.Drawing.Point(537, 336);
             this.deletePerson.Name = "deletePerson";
             this.deletePerson.Size = new System.Drawing.Size(88, 23);
             this.deletePerson.TabIndex = 25;
@@ -363,14 +371,14 @@ namespace FILLITT
             // 
             // tbFirstNameUpdate
             // 
-            this.tbFirstNameUpdate.Location = new System.Drawing.Point(672, 144);
+            this.tbFirstNameUpdate.Location = new System.Drawing.Point(537, 152);
             this.tbFirstNameUpdate.Name = "tbFirstNameUpdate";
             this.tbFirstNameUpdate.Size = new System.Drawing.Size(114, 20);
             this.tbFirstNameUpdate.TabIndex = 24;
             // 
             // updatePerson
             // 
-            this.updatePerson.Location = new System.Drawing.Point(672, 299);
+            this.updatePerson.Location = new System.Drawing.Point(537, 307);
             this.updatePerson.Name = "updatePerson";
             this.updatePerson.Size = new System.Drawing.Size(88, 23);
             this.updatePerson.TabIndex = 37;
@@ -381,7 +389,7 @@ namespace FILLITT
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(590, 112);
+            this.label13.Location = new System.Drawing.Point(455, 120);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(72, 13);
             this.label13.TabIndex = 38;
@@ -390,15 +398,15 @@ namespace FILLITT
             // lbSiblings
             // 
             this.lbSiblings.FormattingEnabled = true;
-            this.lbSiblings.Location = new System.Drawing.Point(668, 385);
+            this.lbSiblings.Location = new System.Drawing.Point(668, 209);
             this.lbSiblings.Name = "lbSiblings";
-            this.lbSiblings.Size = new System.Drawing.Size(120, 82);
+            this.lbSiblings.Size = new System.Drawing.Size(120, 69);
             this.lbSiblings.TabIndex = 39;
             // 
             // lbGrandparents
             // 
             this.lbGrandparents.FormattingEnabled = true;
-            this.lbGrandparents.Location = new System.Drawing.Point(668, 492);
+            this.lbGrandparents.Location = new System.Drawing.Point(668, 304);
             this.lbGrandparents.Name = "lbGrandparents";
             this.lbGrandparents.Size = new System.Drawing.Size(120, 69);
             this.lbGrandparents.TabIndex = 40;
@@ -406,7 +414,7 @@ namespace FILLITT
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(669, 365);
+            this.label14.Location = new System.Drawing.Point(669, 189);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(43, 13);
             this.label14.TabIndex = 41;
@@ -415,11 +423,91 @@ namespace FILLITT
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(669, 472);
+            this.label15.Location = new System.Drawing.Point(669, 284);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(71, 13);
             this.label15.TabIndex = 42;
             this.label15.Text = "Grandparents";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(669, 98);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(45, 13);
+            this.label16.TabIndex = 44;
+            this.label16.Text = "Children";
+            // 
+            // lbChildren
+            // 
+            this.lbChildren.FormattingEnabled = true;
+            this.lbChildren.Location = new System.Drawing.Point(668, 117);
+            this.lbChildren.Name = "lbChildren";
+            this.lbChildren.Size = new System.Drawing.Size(120, 69);
+            this.lbChildren.TabIndex = 43;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(498, 374);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(37, 13);
+            this.label17.TabIndex = 45;
+            this.label17.Text = "Father";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(410, 374);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(40, 13);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "Mother";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(317, 374);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(72, 13);
+            this.label19.TabIndex = 47;
+            this.label19.Text = "Date of death";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(226, 375);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(49, 13);
+            this.label20.TabIndex = 48;
+            this.label20.Text = "Birthdate";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(134, 375);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(56, 13);
+            this.label21.TabIndex = 49;
+            this.label21.Text = "Last name";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(44, 375);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(55, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "First name";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 376);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(16, 13);
+            this.label23.TabIndex = 51;
+            this.label23.Text = "Id";
             // 
             // Form1
             // 
@@ -427,6 +515,15 @@ namespace FILLITT
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 576);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.lbChildren);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.lbGrandparents);
@@ -447,7 +544,7 @@ namespace FILLITT
             this.Controls.Add(this.deletePerson);
             this.Controls.Add(this.tbFirstNameUpdate);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.listBox7);
+            this.Controls.Add(this.lbId);
             this.Controls.Add(this.lbFather);
             this.Controls.Add(this.lbMother);
             this.Controls.Add(this.lbYearOfDeath);
@@ -499,7 +596,7 @@ namespace FILLITT
         private System.Windows.Forms.ListBox lbYearOfDeath;
         private System.Windows.Forms.ListBox lbMother;
         private System.Windows.Forms.ListBox lbFather;
-        private System.Windows.Forms.ListBox listBox7;
+        private System.Windows.Forms.ListBox lbId;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -520,6 +617,15 @@ namespace FILLITT
         private System.Windows.Forms.ListBox lbGrandparents;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ListBox lbChildren;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
     }
 }
 
