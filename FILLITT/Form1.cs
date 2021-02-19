@@ -19,7 +19,7 @@ namespace FILLITT
         public Form1()
         {
             InitializeComponent();
-            FillComboboxMenu();
+            //FillComboboxMenu();
         }
         /// <summary>
         /// Search button that handles searches in the database, by year and name. Searches use LIKE to handle incomplete search parameters.

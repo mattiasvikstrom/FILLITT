@@ -7,13 +7,12 @@ using System.Windows.Forms;
 
 namespace FILLITT
 {
-    public class Utility : Form1
+    class Utility
     {
         public void RunProgram()
         {
             Database db = new Database();
             db.RunDatabaseCheck();
-            
         }
     }
 }
