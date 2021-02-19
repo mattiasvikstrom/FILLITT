@@ -82,6 +82,8 @@ namespace FILLITT
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.lbCousins = new System.Windows.Forms.ListBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbFirstName
@@ -89,6 +91,7 @@ namespace FILLITT
             this.lbFirstName.FormattingEnabled = true;
             this.lbFirstName.Location = new System.Drawing.Point(59, 392);
             this.lbFirstName.Name = "lbFirstName";
+            this.lbFirstName.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbFirstName.Size = new System.Drawing.Size(86, 173);
             this.lbFirstName.TabIndex = 0;
             // 
@@ -220,6 +223,7 @@ namespace FILLITT
             this.lbLastName.FormattingEnabled = true;
             this.lbLastName.Location = new System.Drawing.Point(151, 392);
             this.lbLastName.Name = "lbLastName";
+            this.lbLastName.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbLastName.Size = new System.Drawing.Size(85, 173);
             this.lbLastName.TabIndex = 17;
             // 
@@ -228,6 +232,7 @@ namespace FILLITT
             this.lbBirthDate.FormattingEnabled = true;
             this.lbBirthDate.Location = new System.Drawing.Point(242, 392);
             this.lbBirthDate.Name = "lbBirthDate";
+            this.lbBirthDate.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbBirthDate.Size = new System.Drawing.Size(85, 173);
             this.lbBirthDate.TabIndex = 18;
             // 
@@ -236,6 +241,7 @@ namespace FILLITT
             this.lbYearOfDeath.FormattingEnabled = true;
             this.lbYearOfDeath.Location = new System.Drawing.Point(333, 392);
             this.lbYearOfDeath.Name = "lbYearOfDeath";
+            this.lbYearOfDeath.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbYearOfDeath.Size = new System.Drawing.Size(85, 173);
             this.lbYearOfDeath.TabIndex = 19;
             // 
@@ -244,6 +250,7 @@ namespace FILLITT
             this.lbMother.FormattingEnabled = true;
             this.lbMother.Location = new System.Drawing.Point(424, 392);
             this.lbMother.Name = "lbMother";
+            this.lbMother.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbMother.Size = new System.Drawing.Size(85, 173);
             this.lbMother.TabIndex = 20;
             // 
@@ -252,6 +259,7 @@ namespace FILLITT
             this.lbFather.FormattingEnabled = true;
             this.lbFather.Location = new System.Drawing.Point(515, 392);
             this.lbFather.Name = "lbFather";
+            this.lbFather.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbFather.Size = new System.Drawing.Size(85, 173);
             this.lbFather.TabIndex = 21;
             // 
@@ -260,6 +268,7 @@ namespace FILLITT
             this.lbId.FormattingEnabled = true;
             this.lbId.Location = new System.Drawing.Point(12, 392);
             this.lbId.Name = "lbId";
+            this.lbId.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbId.Size = new System.Drawing.Size(41, 173);
             this.lbId.TabIndex = 22;
             // 
@@ -531,12 +540,31 @@ namespace FILLITT
             this.label25.TabIndex = 53;
             this.label25.Text = "View / Update / Delete";
             // 
+            // lbCousins
+            // 
+            this.lbCousins.FormattingEnabled = true;
+            this.lbCousins.Location = new System.Drawing.Point(668, 396);
+            this.lbCousins.Name = "lbCousins";
+            this.lbCousins.Size = new System.Drawing.Size(120, 69);
+            this.lbCousins.TabIndex = 54;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(669, 378);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(44, 13);
+            this.label26.TabIndex = 55;
+            this.label26.Text = "Cousins";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 576);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.lbCousins);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
@@ -652,6 +680,8 @@ namespace FILLITT
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ListBox lbCousins;
+        private System.Windows.Forms.Label label26;
     }
 }
 

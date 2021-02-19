@@ -19,7 +19,7 @@ namespace FILLITT
         public Form1()
         {
             InitializeComponent();
-            //FillComboboxMenu();
+            FillComboboxMenu();
         }
         /// <summary>
         /// Search button that handles searches in the database, by year and name. Searches use LIKE to handle incomplete search parameters.
@@ -147,6 +147,7 @@ namespace FILLITT
                     ListChildren();
                     ListSiblings();
                     ListGrandparents();
+                    Cousins();
                     con.Close();
                 }
             }
@@ -261,7 +262,7 @@ namespace FILLITT
                 var selectId = selectedComboBoxIndex;
                 var ident = people[selectId].Id;
                 con.Open();
-                string insertString = @"DELETE FROM People WHERE Id = @ident";
+                const string insertString = @"DELETE FROM People WHERE Id = @ident";
 
                 SqlCommand cmd = new SqlCommand(insertString, con);
                 cmd.Parameters.AddWithValue("@ident", ident);
@@ -394,6 +395,45 @@ namespace FILLITT
                 i++;
             }
             return grandparents;
+        }
+
+        private void Cousins()
+        {
+            List<Person> cousins = new List<Person>();
+            int index = selectedComboBoxIndex;
+            int mother = people[index].Mother;
+            cousins = GetParentSiblings(cousins, mother);
+            lbCousins.DataSource = cousins;
+            lbCousins.DisplayMember = "FirstName";
+        }
+        private List<Person> GetParentSiblings(List<Person> cousins, int mother)
+        {
+            List<Person> parentsibling = new List<Person>();
+            int grandmother = 0;
+            int cousinsparents = 0;
+
+            for (int i = 0; i < people.Count; i++)
+            {
+                if(people[i].Id == mother)
+                {
+                    grandmother = people[i].Mother;
+                }
+            }
+            for (int j = 0; j < people.Count; j++)
+            {
+                if (people[j].Mother == grandmother && people[j].Id != mother && grandmother != 0)
+                {
+                    cousinsparents = people[j].Id;
+                    for (int k = 0; k < people.Count; k++)
+                    {
+                        if (people[k].Mother == cousinsparents)
+                        {
+                            cousins.Add(people[k]);
+                        }
+                    }
+                }
+            }
+            return cousins;
         }
     }
 }
