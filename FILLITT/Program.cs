@@ -14,6 +14,7 @@ namespace FILLITT
         [STAThread]
         static void Main()
         {
+            var people = new List<Person>();
             Utility run = new Utility();
             run.RunProgram();
 

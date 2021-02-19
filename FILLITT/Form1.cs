@@ -9,18 +9,20 @@ namespace FILLITT
     {
         public Database db = new Database();
         public List<Person> people = new List<Person>();
-        SqlConnection con = new SqlConnection(Database.CnnValue("FamilyTree")); // gets connection
+        SqlConnection con = new SqlConnection(Database.CnnValue("MattiasFamilyTree")); // gets connection
         SqlCommand cmd;
         SqlDataReader dr;
         private int selectedComboBoxIndex;
-
+        /// <summary>
+        /// Initialize
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
             FillComboboxMenu();
         }
         /// <summary>
-        /// Searchbutton that handles searches in the database, by year and name. Searches use LIKE to handle incomplete search parameters.
+        /// Search button that handles searches in the database, by year and name. Searches use LIKE to handle incomplete search parameters.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -32,8 +34,10 @@ namespace FILLITT
             {
                 con.Open();
                 string searchVariable = textBox1.Text.Trim();
-                cmd = new SqlCommand();
-                cmd.Connection = con;
+                cmd = new SqlCommand
+                {
+                    Connection = con
+                };
 
                 if (Int32.TryParse(searchVariable, out result))
                 {
@@ -66,7 +70,9 @@ namespace FILLITT
                 }
             }
         }
-        
+        /// <summary>
+        /// Clears boxes before displaying data.
+        /// </summary>
         private void ClearListBox()
         {
             lbFirstName.Items.Clear();
@@ -111,7 +117,7 @@ namespace FILLITT
             }
         }
         /// <summary>
-        /// Displays the persons information who is chosen in the combobox dropbown menu
+        /// Displays the persons information who is chosen in the combo box drop down menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -188,9 +194,9 @@ namespace FILLITT
             }
         }
         /// <summary>
-        /// Updates the combobox menu to accurately represent the current state of the database
+        /// Updates the combo box menu to accurately represent the current state of the database
         /// </summary>
-        private void FillComboboxMenu()
+        public void FillComboboxMenu()
         {
             comboBox1.Items.Clear();
             var i = 0;
@@ -202,7 +208,7 @@ namespace FILLITT
             }
         }
         /// <summary>
-        /// Updatebutton gets the Id of selected person in comboboxlist and gets the entered information into the sqlstring
+        /// Update button gets the Id of selected person in combo box list and gets the entered information into the SQLstring
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -244,7 +250,7 @@ namespace FILLITT
             }
         }
         /// <summary>
-        /// Deletes the selected person in the combobox from the sqldatabase
+        /// Deletes the selected person in the combo box from the SQLdatabase
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -302,7 +308,7 @@ namespace FILLITT
             return parentId;
         }
         /// <summary>
-        /// Gets and displays a selected persons children 
+        /// Gets and displays a selected persons children.
         /// </summary>
         private void ListChildren()
         {
@@ -310,7 +316,6 @@ namespace FILLITT
             int i = 0;
             int index = selectedComboBoxIndex;
             int parent = people[index].Id;
-            
             foreach (var item in people)
             {
                 if (people[i].Mother == parent && people[i].Mother != 0 || people[i].Father == parent && people[i].Father != 0)
@@ -324,7 +329,7 @@ namespace FILLITT
             lbChildren.DisplayMember = "FirstName";
         }
         /// <summary>
-        /// Checks if the selected person in the combobox has people who share the same parent or parents which are then displayed as siblings
+        /// Checks if the selected person in the combo box has people who share the same parent or parents which are then displayed as siblings.
         /// </summary>
         private void ListSiblings()
         {
@@ -346,7 +351,7 @@ namespace FILLITT
             lbSiblings.DisplayMember = "FirstName";
         }
         /// <summary>
-        /// Handles the displaying of grandparents to the selected person in the combobox
+        /// Handles the displaying of grandparents to the selected person in the combo box.
         /// </summary>
         private void ListGrandparents()
         {
@@ -360,7 +365,7 @@ namespace FILLITT
             lbGrandparents.DisplayMember = "FirstName";
         }
         /// <summary>
-        /// uses parameters to retrieve the correct matches for grandparents
+        /// uses parameters to retrieve the correct matches for grandparents.
         /// </summary>
         /// <param name="grandparents"></param>
         /// <param name="parent"></param>
