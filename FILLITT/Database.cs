@@ -260,8 +260,8 @@ namespace FILLITT
                     ('Paulina', 'Granberg', '1990', '', 10, 11),
                     ('Hilma', 'Vikström', '1881', '1967', 0, 0),
                     ('Erik', 'Vikström', '', '', 0, 0),
-                    ('Elvira', 'Forsberg', '1915', '', 0, 0),
-                    ('Efraem', 'Forsberg', '1915', '', 0, 0)";
+                    ('Elvira', 'Forsberg', '1915', '1998', 0, 0),
+                    ('Efraem', 'Forsberg', '1903', '1973', 0, 0)";
             return sql;
         }
     }
