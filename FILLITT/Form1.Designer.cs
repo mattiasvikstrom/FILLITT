@@ -1,5 +1,5 @@
 ﻿
-namespace FILLITT
+namespace MattiasFamilyTree
 {
     partial class Form1
     {
@@ -378,7 +378,7 @@ namespace FILLITT
             this.deletePerson.TabIndex = 25;
             this.deletePerson.Text = "Delete person";
             this.deletePerson.UseVisualStyleBackColor = true;
-            this.deletePerson.Click += new System.EventHandler(this.deletePerson_Click);
+            this.deletePerson.Click += new System.EventHandler(this.DeletePerson_Click);
             // 
             // tbFirstNameUpdate
             // 
@@ -395,7 +395,7 @@ namespace FILLITT
             this.updatePerson.TabIndex = 37;
             this.updatePerson.Text = "Update person";
             this.updatePerson.UseVisualStyleBackColor = true;
-            this.updatePerson.Click += new System.EventHandler(this.updatePerson_Click);
+            this.updatePerson.Click += new System.EventHandler(this.UpdatePerson_Click);
             // 
             // label13
             // 

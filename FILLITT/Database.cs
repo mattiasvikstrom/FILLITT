@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace FILLITT
+namespace MattiasFamilyTree
 {
     public class Database
     {

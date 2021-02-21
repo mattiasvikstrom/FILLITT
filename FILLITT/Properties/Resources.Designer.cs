@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace FILLITT.Properties
+namespace MattiasFamilyTree.Properties
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.

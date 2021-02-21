@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace FILLITT
+namespace MattiasFamilyTree
 {
     public partial class Form1 : Form
     {
@@ -115,12 +115,12 @@ namespace FILLITT
                 string insertString = @"
                  INSERT INTO People
                  (FirstName, LastName, BirthDate, DateOfDeath, Mother, Father)
-                 values (@namn, @lastnamn, @Birthdate, @deathdate, @mother, @father)";
+                 values (@namn, @lastnamn, @birthdate, @deathdate, @mother, @father)";
 
                 SqlCommand cmd = new SqlCommand(insertString, con);
                 cmd.Parameters.AddWithValue("@namn", tbFirstNameAdd.Text);
                 cmd.Parameters.AddWithValue("@lastnamn", tbLastNameAdd.Text);
-                cmd.Parameters.AddWithValue("@Birthdate", tbBirthdateAdd.Text);
+                cmd.Parameters.AddWithValue("@birthdate", tbBirthdateAdd.Text);
                 cmd.Parameters.AddWithValue("@deathdate", tbDateOfDeathAdd.Text);
                 string mother = tbMotherAdd.Text;
                 int motherId = HandleParentInput(mother);
@@ -253,7 +253,7 @@ namespace FILLITT
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void updatePerson_Click(object sender, EventArgs e)
+        private void UpdatePerson_Click(object sender, EventArgs e)
         {
             try
             {
@@ -261,13 +261,13 @@ namespace FILLITT
                 con.Open();
                 string insertString = @"
                  UPDATE People
-                 SET FirstName = @namn, LastName = @lastnamn, BirthDate = @Birthdate, DateOfDeath = @deathdate, Mother = @mother, Father = @father 
+                 SET FirstName = @namn, LastName = @lastnamn, BirthDate = @birthdate, DateOfDeath = @deathdate, Mother = @mother, Father = @father 
                  WHERE Id = @ident";
 
                 SqlCommand cmd = new SqlCommand(insertString, con);
                 cmd.Parameters.AddWithValue("@namn", tbFirstNameUpdate.Text);
                 cmd.Parameters.AddWithValue("@lastnamn", tbLastNameUpdate.Text);
-                cmd.Parameters.AddWithValue("@Birthdate", tbBirthdateUpdate.Text);
+                cmd.Parameters.AddWithValue("@birthdate", tbBirthdateUpdate.Text);
                 cmd.Parameters.AddWithValue("@deathdate", tbDateOfDeathUpdate.Text);
                 string mother = tbMotherUpdate.Text;
                 int motherId = HandleParentInput(mother);
@@ -304,7 +304,7 @@ namespace FILLITT
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void deletePerson_Click(object sender, EventArgs e)
+        private void DeletePerson_Click(object sender, EventArgs e)
         {
             try
             {
@@ -434,7 +434,7 @@ namespace FILLITT
                 i++;
             }
             i = 0;
-            foreach (var item in people) //bryt ut metoden 
+            foreach (var item in people)
             {
                 if (people[i].Id == personsMother || people[i].Id == personsFather)
                 {
