@@ -51,7 +51,7 @@ namespace FILLITT
             this.lbMother = new System.Windows.Forms.ListBox();
             this.lbFather = new System.Windows.Forms.ListBox();
             this.lbId = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SelectPerson = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -272,14 +272,14 @@ namespace FILLITT
             this.lbId.Size = new System.Drawing.Size(41, 173);
             this.lbId.TabIndex = 22;
             // 
-            // comboBox1
+            // SelectPerson
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(533, 117);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 23;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.SelectPerson.FormattingEnabled = true;
+            this.SelectPerson.Location = new System.Drawing.Point(533, 117);
+            this.SelectPerson.Name = "SelectPerson";
+            this.SelectPerson.Size = new System.Drawing.Size(121, 21);
+            this.SelectPerson.TabIndex = 23;
+            this.SelectPerson.SelectedIndexChanged += new System.EventHandler(this.SelectPerson_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -562,7 +562,7 @@ namespace FILLITT
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 576);
+            this.ClientSize = new System.Drawing.Size(800, 581);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.lbCousins);
             this.Controls.Add(this.label25);
@@ -595,7 +595,7 @@ namespace FILLITT
             this.Controls.Add(this.tbLastNameUpdate);
             this.Controls.Add(this.deletePerson);
             this.Controls.Add(this.tbFirstNameUpdate);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.SelectPerson);
             this.Controls.Add(this.lbId);
             this.Controls.Add(this.lbFather);
             this.Controls.Add(this.lbMother);
@@ -649,7 +649,7 @@ namespace FILLITT
         private System.Windows.Forms.ListBox lbMother;
         private System.Windows.Forms.ListBox lbFather;
         private System.Windows.Forms.ListBox lbId;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox SelectPerson;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;

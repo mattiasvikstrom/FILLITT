@@ -39,7 +39,7 @@ namespace FILLITT
         /// <returns></returns>
         private bool EvaluateDatabase()
         {
-            bool databaseEvaluationValue = false;
+            bool databaseEvaluationValue = true;
             SqlConnection connect = new SqlConnection(ConnectionString);
             var sql = @"SELECT COUNT(*) FROM master.dbo.sysdatabases WHERE name = N'" +DatabaseName + "' ";
             SqlCommand cmd = new SqlCommand();
@@ -56,7 +56,7 @@ namespace FILLITT
                 {
                     if(cmd.ExecuteNonQuery() != 0)
                     {
-                        databaseEvaluationValue = true;
+                        databaseEvaluationValue = false;
                     }
                     connect.Close();
                 }
@@ -219,7 +219,7 @@ namespace FILLITT
         private void PopulateDatabase()
         {
             SqlConnection connect = new SqlConnection(CnnValue("MattiasFamilyTree"));
-            var sql = PopulateData();
+            var sql = PopulationData();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = sql;
             cmd.Connection = connect;
@@ -236,7 +236,11 @@ namespace FILLITT
                 }
             }
         }
-        private string PopulateData()
+        /// <summary>
+        /// Filler data that can be added to database
+        /// </summary>
+        /// <returns></returns>
+        private string PopulationData()
         {
             const string sql = @"INSERT INTO People
                     (FirstName, LastName, BirthDate, DateOfDeath, Mother, Father)

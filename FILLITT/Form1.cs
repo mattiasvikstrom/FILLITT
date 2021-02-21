@@ -29,7 +29,7 @@ namespace FILLITT
             FillComboboxMenu();
         }
         /// <summary>
-        /// Search button that handles searches in the database, by year and name. Searches use LIKE to handle incomplete search parameters.
+        /// Handling searches in the database, by year and name. Searches use LIKE to handle incomplete search parameters.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -78,7 +78,7 @@ namespace FILLITT
             }
         }
         /// <summary>
-        /// Clears boxes before displaying data.
+        /// Clears list boxes before displaying data.
         /// </summary>
         private void ClearListBox()
         {
@@ -90,6 +90,23 @@ namespace FILLITT
             lbFather.Items.Clear();
             lbId.Items.Clear();
         }
+        /// <summary>
+        /// Clears Text boxes before displaying data.
+        /// </summary>
+        private void ClearTextBoxUpdate()
+        {
+            tbFirstNameUpdate.Clear();
+            tbLastNameUpdate.Clear();
+            tbBirthdateUpdate.Clear();
+            tbDateOfDeathUpdate.Clear();
+            tbMotherUpdate.Clear();
+            tbFatherUpdate.Clear();
+        }
+        /// <summary>
+        /// Adds person to the database with information from specified text boxes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void EnterPersonToDatabase_Click(object sender, EventArgs e)
         {
             try
@@ -111,7 +128,6 @@ namespace FILLITT
                 string father = tbFatherAdd.Text;
                 int fatherId = HandleParentInput(father);
                 cmd.Parameters.AddWithValue("@father", fatherId);
-
                 cmd.ExecuteNonQuery();
                 FillComboboxMenu();
             }
@@ -128,20 +144,12 @@ namespace FILLITT
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SelectPerson_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cousins.Clear();
-            tbFirstNameUpdate.Clear();
-            tbLastNameUpdate.Clear();
-            tbBirthdateUpdate.Clear();
-            tbDateOfDeathUpdate.Clear();
-            tbMotherUpdate.Clear();
-            tbFatherUpdate.Clear();
-            
+            ClearTextBoxUpdate();
 
-
-            selectedComboBoxIndex = comboBox1.SelectedIndex;
-            var index = comboBox1.SelectedIndex;
+            selectedComboBoxIndex = SelectPerson.SelectedIndex;
+            var index = SelectPerson.SelectedIndex;
             try
             {
                 tbFirstNameUpdate.Text = people[index].FirstName;
@@ -149,32 +157,40 @@ namespace FILLITT
                 tbBirthdateUpdate.Text = people[index].BirthDate;
                 tbDateOfDeathUpdate.Text = people[index].DateOfDeath;
                 DisplayParentsNamesFromId(index);
+                DisplayRelatives();
             }
             finally
             {
                 if (con != null)
                 {
-                    children = ListChildren();
-                    lbChildren.DataSource = children;
-                    lbChildren.DisplayMember = "FirstName";
-
-                    siblings = ListSiblings(selectedComboBoxIndex);
-                    lbSiblings.DataSource = siblings;
-                    lbSiblings.DisplayMember = "FirstName";
-
-                    grandparents = ListGrandparents();
-                    lbGrandparents.DataSource = grandparents;
-                    lbGrandparents.DisplayMember = "FirstName";
-
-                    cousins = Cousins();
-                    lbCousins.DataSource = cousins;
-                    lbCousins.DisplayMember = "FirstName";
+                    
                     con.Close();
                 }
             }
         }
         /// <summary>
-        /// Parents are stored as Id's and this retrieves the Name from that Id to be displayed 
+        /// Display of chosen person from drop down menu's family relations.
+        /// </summary>
+        private void DisplayRelatives()
+        {
+            children = ListChildren();
+            lbChildren.DataSource = children;
+            lbChildren.DisplayMember = "FirstName";
+
+            siblings = ListSiblings(selectedComboBoxIndex);
+            lbSiblings.DataSource = siblings;
+            lbSiblings.DisplayMember = "FirstName";
+
+            grandparents = ListGrandparents();
+            lbGrandparents.DataSource = grandparents;
+            lbGrandparents.DisplayMember = "FirstName";
+
+            cousins = Cousins();
+            lbCousins.DataSource = cousins;
+            lbCousins.DisplayMember = "FirstName";
+        }
+        /// <summary>
+        /// Parents are stored as Id's and this retrieves the Name from that Id to be displayed.
         /// </summary>
         /// <param name="index"></param>
         private void DisplayParentsNamesFromId(int index)
@@ -223,12 +239,12 @@ namespace FILLITT
         /// </summary>
         public void FillComboboxMenu()
         {
-            comboBox1.Items.Clear();
+            SelectPerson.Items.Clear();
             var i = 0;
             people = db.GetDatabaseList();
             while (people.Count > i)
             {
-                comboBox1.Items.Add(people[i].FirstName);
+                SelectPerson.Items.Add(people[i].FirstName);
                 i++;
             }
         }
@@ -241,8 +257,7 @@ namespace FILLITT
         {
             try
             {
-                var selectId = selectedComboBoxIndex;
-                var ident = people[selectId].Id;
+                int ident = GetSelectedPersonsId();
                 con.Open();
                 string insertString = @"
                  UPDATE People
@@ -275,6 +290,16 @@ namespace FILLITT
             }
         }
         /// <summary>
+        /// Returns the selected combobox Id.
+        /// </summary>
+        /// <returns></returns>
+        private int GetSelectedPersonsId()
+        {
+            var selectId = selectedComboBoxIndex;
+            return people[selectId].Id;
+        }
+
+        /// <summary>
         /// Deletes the selected person in the combo box from the SQLdatabase
         /// </summary>
         /// <param name="sender"></param>
@@ -283,8 +308,7 @@ namespace FILLITT
         {
             try
             {
-                var selectId = selectedComboBoxIndex;
-                var ident = people[selectId].Id;
+                var ident = GetSelectedPersonsId();
                 con.Open();
                 const string insertString = @"DELETE FROM People WHERE Id = @ident";
 
@@ -340,13 +364,12 @@ namespace FILLITT
             var children = new List<Person>();
             children.Clear();
             int i = 0;
-            int index = selectedComboBoxIndex;
-            int parent = people[index].Id;
+            int parent = GetSelectedPersonsId();
             foreach (var item in people)
             {
                 if (people[i].Mother == parent && people[i].Mother != 0 || people[i].Father == parent && people[i].Father != 0)
                 {
-                    if (i != comboBox1.SelectedIndex)
+                    if (i != SelectPerson.SelectedIndex)
                         children.Add(people[i]);
                 }
                 i++;
@@ -375,7 +398,6 @@ namespace FILLITT
                 i++;
             }
             return siblings;
-
         }
         /// <summary>
         /// Handles the displaying of grandparents to the selected person in the combo box.
@@ -397,7 +419,7 @@ namespace FILLITT
         /// <param name="grandparents"></param>
         /// <param name="parent"></param>
         /// <returns></returns>
-        private List<Person> GetGrandparents(List<Person> grandparents, int parent)//säkert rätta metoden att kalla på... Byt namn till getParents kan sen skickas till getGrandparents sen get siblings och sen kusiner
+        private List<Person> GetGrandparents(List<Person> grandparents, int parent)
         {
             int personsMother = 0;
             int personsFather = 0;
@@ -423,31 +445,23 @@ namespace FILLITT
             return grandparents;
         }
         /// <summary>
-        /// Gets the selected persons mothers Id
+        /// Returns selected persons cousins.
         /// </summary>
         private List<Person> Cousins()
         {
-            //var cousins = new List<Person>();
-            var parentsiblings = new List<Person>();
-            //cousins.Clear();
-
             parentsiblings = GetParentSiblings(parents);
             return GetCousins(parentsiblings);
         }
 
         /// <summary>
-        /// Collects the selected persons cousins
+        /// Returns siblings of a parent.
         /// </summary>
-        /// <param name="cousins"></param>
-        /// <param name="mother"></param>
+        /// <param name="parents"></param>
         /// <returns></returns>
-        /// 
         private List<Person> GetParentSiblings(List<Person> parents)
         {
             var parentsiblings = new List<Person>();
             parentsiblings.Clear();
-
-            int index = selectedComboBoxIndex;
             int j = 0;
             foreach (var item in parents)
             {
@@ -455,15 +469,19 @@ namespace FILLITT
                 {
                     if (people[i].Id == parents[j].Id)
                     {
-                        index = i;
-                        parentsiblings.AddRange(ListSiblings(index)); //DEN NOLLSTÄLLER LISTAN
+                        int index = i;
+                        parentsiblings.AddRange(ListSiblings(index));
                     }
                 }
                 j++;
             }
             return parentsiblings;
         }
-
+        /// <summary>
+        /// Handles search for the selected persons Cousins.
+        /// </summary>
+        /// <param name="parentsiblings"></param>
+        /// <returns></returns>
         private List<Person> GetCousins(List<Person> parentsiblings)
         {
             int index = selectedComboBoxIndex;
@@ -473,7 +491,7 @@ namespace FILLITT
             {
                 for (int i = 0; i < people.Count; i++)
                 {
-                    if (parentsiblings[j].Id == people[i].Mother && people[i].Id != people[index].Mother )
+                    if (parentsiblings[j].Id == people[i].Mother && people[i].Id != people[index].Mother)
                     {
                         cousins.Add(people[i]);
                     }
@@ -486,37 +504,6 @@ namespace FILLITT
             }
             return cousins;
         }
-        //private List<Person> GetGrandParents(int mother, int father)
-        //{
-        //    var grandparents = new List<Person>();
-        //    for (int i = 0; i < people.Count; i++)
-        //    {
-        //        if (people[i].Id == mother)
-        //        {
-        //            var grandmother = people[i].Mother;
-        //            for (int j = 0; j < people.Count; j++)
-        //            {
-        //                if(people[j].Mother == grandmother && people[j].Mother != people[selectedComboBoxIndex].Mother)
-        //                {
-        //                    grandparents.Add(people[j]);
-        //                }
-        //            }
-        //        }
-        //        else if (people[i].Id == father)
-        //        {
-        //            var grandfather = people[i].Father;
-        //            for (int k = 0; k < people.Count; k++)
-        //            {
-        //                if (people[k].Father == grandfather && people[k].Father != people[selectedComboBoxIndex].Father)
-        //                {
-        //                    grandparents.Add(people[k]);
-        //                }
-        //            }
-
-        //        }
-        //    }
-        //    return grandparents;
-        //}
     }
 }
 
